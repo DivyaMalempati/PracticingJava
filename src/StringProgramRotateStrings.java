@@ -29,6 +29,29 @@ public class StringProgramRotateStrings {
 		return hashRotations;
 	}
 
+	public boolean rotateStringAlternate(String s, String goal) {
+        if(s.length()!=goal.length()) return false;
+		if(goal.equals(s)) {
+                return true;
+        }
+		String tempstring = s.substring(0, s.length());
+        for (int index = 1; index < s.length(); index++) {
+            if(goal.charAt(0) != s.charAt(index)) continue;
+			StringBuilder buildAString = new StringBuilder();
+			String tempAppend = " ";
+			if (index >= 1) {
+				tempAppend = s.substring(0, index);
+			}
+			tempstring = s.substring(index, s.length());
+			buildAString.append(tempstring + tempAppend);
+			if(goal.equals(buildAString.toString())) {
+                return true;
+            }
+ 		}
+		return false;
+	}
+
+	
 	@Test
 	public void rotateStringTest() {
 		assertTrue(rotateString(new String("abcde"), new String("bcdea")));
